@@ -27,6 +27,6 @@ CREATE TABLE employee (
   -- if role is deleted all records with that role_id will aslo be deleted
   manager_id INT UNSIGNED,  -- only positive #'s
   INDEX man_ind (manager_id),
-  CONSTRAINT fk_manager FOREIGN KEY (manager_id) REFERENCES employee(id) ON DELETE SET NULL -- if manager is deleted, set manager to null
+  CONSTRAINT fk_manager FOREIGN KEY (manager_id) REFERENCES employee(id) ON DELETE SET NULL -- if manager is deleted, set manager to null but keep the employee
 
 );
