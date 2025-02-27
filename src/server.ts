@@ -1,38 +1,47 @@
-import express from 'express';
-import { QueryResult } from 'pg';
-import { pool, connectToDb } from './connection.js';
+import express, { Express, Request, Response } from 'express';
+import dotenv from 'dotenv';
+import db from '../db/connection';
 
-await connectToDb();
+dotenv.config();
 
+const app: Express = express();
 const PORT = process.env.PORT || 3001;
-const app = express();
 
-// Express middleware
+// Middleware
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-// Query database using COUNT() and GROUP BY
-pool.query('SELECT COUNT(id) AS total_count FROM favorite_books GROUP BY in_stock', (err: Error, result: QueryResult) => {
-  if (err) {
-    console.log(err);
-  } else if (result) {
-    console.log(result.rows);
-  }
+// Test route
+app.get('/', (req: Request, res: Response) => {
+    res.json({
+        message: 'Employee Manager API'
+    });
 });
 
-// Query database using SUM(), MAX(), MIN() AVG() and GROUP BY
-pool.query('SELECT SUM(quantity) AS total_in_section, MAX(quantity) AS max_quantity, MIN(quantity) AS min_quantity, AVG(quantity) AS avg_quantity FROM favorite_books GROUP BY section', (err: Error, result: QueryResult) => {
-  if (err) {
-    console.log(err);
-  } else if (result) {
-    console.log(result.rows);
-  }
+// Example employee routes
+app.get('/api/employees', async (req: Request, res: Response) => {
+    try {
+        const employees = await db.findAllEmployees();
+        res.json(employees);
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch employees' });
+    }
 });
 
-app.use((_req, res) => {
-  res.status(404).end();
+// Start server after db connection is established
+db.connect((err, client, release) => {
+    if (err) {
+        console.error('Error connecting to the database:', err.stack);
+        process.exit(1);
+    } else {
+        console.log('Connected to database successfully');
+        release();
+
+        // Start server
+        app.listen(PORT, () => {
+            console.log(`Server running on port ${PORT}`);
+        });
+    }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+export default app;

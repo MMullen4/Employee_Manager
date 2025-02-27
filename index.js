@@ -1,6 +1,6 @@
-const { prompt } = require("inquirer");
-const logo = require("asciiart-logo");
-const db = require("./db");
+import { prompt } from "inquirer";
+import logo from "asciiart-logo";
+import db from "./index.js";
 
 init();
 

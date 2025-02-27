@@ -1,7 +1,4 @@
-USE employees;
-
-INSERT INTO department 
-(name)
+INSERT INTO department (name)
 VALUES 
 ('Sales'),
 ('Engineering'),
@@ -12,8 +9,7 @@ VALUES
 ('Shipping'),
 ('Admin');
 
-INSERT INTO role
-(title, salary, department_id)
+INSERT INTO role (title, salary, department_id)
 VALUES
 ('Sales Lead', 100000, 1),
 ('Salesperson', 80000, 1),
@@ -49,4 +45,4 @@ VALUES
 ('Sue', 'Miller', 13, NULL),
 ('Joe', 'Maurer', 14, 13),
 ('Bette', 'Davis', 15, NULL),
-('Joe', 'Blow', 16, 15);
+('Joe', 'Blow', 8, 15);

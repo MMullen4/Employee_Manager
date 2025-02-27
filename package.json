@@ -1,7 +1,7 @@
 {
   "name": "employee_manager",
   "version": "1.0.0",
-  "description": "",
+  "description": "An application to manage a company's employee database, using Node.js, Inquirer and PostgreSQL.",
   "type": "module",
   "main": "server.js",
   "scripts": {
@@ -25,5 +25,13 @@
     "@types/inquirer": "^9.0.7",
     "@types/pg": "^8.11.6",
     "typescript": "^5.2.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MMullen4/Employee_Manager.git"
+  },
+  "bugs": {
+    "url": "https://github.com/MMullen4/Employee_Manager/issues"
+  },
+  "homepage": "https://github.com/MMullen4/Employee_Manager#readme"
 }
