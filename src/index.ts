@@ -1,5 +1,4 @@
-import { Pool } from 'pg';
-import connection from '../db/connection';
+import { pool } from './db/connection';
 
 interface Employee {
   id: number;
@@ -21,11 +20,13 @@ interface Department {
   name: string;
 }
 
-class DB {
-  private connection: Pool;
+export default class DB {
+  // private connection: Pool;
 
-  constructor(connection: Pool) {
-    this.connection = connection;
+  constructor() { // define method
+  }
+  async query(sequelQuery: string, params?: any[]) {
+    const poolConnect = await pool.connect()
   }
 
   async findAllEmployees(): Promise<Employee[]> {
@@ -197,7 +198,7 @@ class DB {
     await this.connection.query(query, [roleId, employeeId]);
   }
 }
-const database = new DB(connection);
-export default database;
+// const database = new DB(connection);
+// export default database;
 
 // export default new DB(connection);

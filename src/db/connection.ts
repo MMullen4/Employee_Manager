@@ -24,4 +24,4 @@ const connection = async () => {
   }
 };
 
-export default { Pool, connection };
+export { pool, connection };

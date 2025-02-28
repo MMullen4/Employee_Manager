@@ -20,5 +20,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "db/connection.ts"]
+  "include": ["src", "src/db/connection.ts"]
 }

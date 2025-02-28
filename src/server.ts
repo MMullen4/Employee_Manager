@@ -1,6 +1,6 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
-import db from '../db/connection';
+import db from './db/connection';
 
 dotenv.config();
 
