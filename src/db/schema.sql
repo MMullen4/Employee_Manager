@@ -1,7 +1,7 @@
 DROP DATABASE IF EXISTS employees;
 CREATE DATABASE employees;
 
-\c employees;
+USE employees;
 
 CREATE TABLE department
 (
